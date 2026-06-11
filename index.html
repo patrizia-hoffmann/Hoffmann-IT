@@ -6,498 +6,439 @@
   <title>Hoffmann Informationssysteme – Wir erleichtern Ihren Arbeitsalltag</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
-    /* ── Reset & Base ──────────────────────────────── */
+    /* ── Reset ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
-      color: #1e293b;
-      background: #fff;
-    }
-    a { color: inherit; text-decoration: none; }
+    body { font-family: 'DM Sans', sans-serif; color: #1A2332; background: #fff; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
+    img { display: block; max-width: 100%; }
+    button { cursor: pointer; font-family: inherit; }
 
-    /* ── Tokens ────────────────────────────────────── */
+    /* ── Tokens ── */
     :root {
-      --navy:    #0f1e35;
-      --navy-mid:#162944;
-      --blue:    #3b82f6;
-      --blue-dk: #2563eb;
-      --gray-bg: #f8fafc;
-      --gray-bd: #e2e8f0;
-      --text:    #1e293b;
-      --muted:   #64748b;
-      --white:   #ffffff;
-      --radius:  10px;
-      --shadow:  0 4px 24px rgba(15,30,53,.08);
+      --navy:     #0F2542;
+      --navy-mid: #163354;
+      --blue:     #1D6FA4;
+      --blue-lt:  #0EA5E9;
+      --gray-bg:  #F7F9FC;
+      --gray-bd:  #DDE3ED;
+      --text:     #1A2332;
+      --muted:    #64748B;
+      --white:    #FFFFFF;
+      --r-card:   12px;
+      --r-btn:    8px;
+      --shadow-sm: 0 1px 4px rgba(15,37,66,.06);
+      --shadow-md: 0 4px 20px rgba(15,37,66,.10);
+      --shadow-lg: 0 12px 40px rgba(15,37,66,.14);
+      --transition: 200ms ease;
     }
 
-    /* ── NAV ───────────────────────────────────────── */
+    /* ════════════════════════════════════
+       NAV
+    ════════════════════════════════════ */
     header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      position: sticky; top: 0; z-index: 200;
       background: var(--navy);
-      border-bottom: 1px solid rgba(255,255,255,.06);
+      border-bottom: 1px solid rgba(255,255,255,.07);
     }
     nav {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 24px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 32px; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
     }
     .logo {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: -.3px;
+      display: flex; align-items: center; gap: 10px;
+      font-size: 1rem; font-weight: 700; color: #fff; letter-spacing: -.01em;
     }
-    .logo span { color: var(--blue); }
+    .logo-mark {
+      width: 32px; height: 32px; border-radius: 7px;
+      background: linear-gradient(135deg, var(--blue-lt), var(--blue));
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .logo-mark svg { width: 18px; height: 18px; }
+    .logo-text em { font-style: normal; color: var(--blue-lt); }
 
-    /* Desktop links */
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .nav-links { display: flex; align-items: center; gap: 2px; }
     .nav-links a {
-      color: rgba(255,255,255,.75);
-      font-size: .875rem;
-      font-weight: 500;
-      padding: 6px 12px;
-      border-radius: 6px;
-      transition: color .2s, background .2s;
+      color: rgba(255,255,255,.7); font-size: .875rem; font-weight: 500;
+      padding: 6px 12px; border-radius: 6px;
+      transition: color var(--transition), background var(--transition);
     }
-    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,.08); }
-    .nav-links .dropdown { position: relative; }
-    .nav-links .dropdown > a::after { content: ' ▾'; font-size: .7rem; opacity: .6; }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,.09); }
+
+    .dropdown { position: relative; }
+    .dropdown > a { display: flex; align-items: center; gap: 4px; }
+    .dropdown > a svg { width: 12px; height: 12px; opacity: .5; transition: transform var(--transition); }
+    .dropdown:hover > a svg { transform: rotate(180deg); }
+
     .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: calc(100% + 8px);
-      left: 0;
-      background: var(--white);
-      border: 1px solid var(--gray-bd);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      min-width: 200px;
-      overflow: hidden;
+      display: none; position: absolute; top: calc(100% + 10px); left: 0;
+      background: #fff; border: 1px solid var(--gray-bd);
+      border-radius: var(--r-card); box-shadow: var(--shadow-lg);
+      min-width: 210px; overflow: hidden;
     }
     .dropdown-menu a {
-      display: block;
-      color: var(--text) !important;
-      padding: 10px 16px !important;
-      font-size: .875rem;
-      background: transparent !important;
+      display: flex; align-items: center; gap: 10px;
+      color: var(--text) !important; padding: 11px 16px !important;
+      font-size: .875rem; background: transparent !important;
       border-radius: 0 !important;
-      transition: background .15s !important;
+      border-bottom: 1px solid var(--gray-bg);
+      transition: background var(--transition) !important;
     }
+    .dropdown-menu a:last-child { border-bottom: none; }
     .dropdown-menu a:hover { background: var(--gray-bg) !important; }
+    .dropdown-menu .menu-icon {
+      width: 28px; height: 28px; border-radius: 6px;
+      background: var(--gray-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .dropdown-menu .menu-icon svg { width: 14px; height: 14px; color: var(--blue); }
     .dropdown:hover .dropdown-menu { display: block; }
 
-    /* CTA button in nav */
     .nav-cta {
-      background: var(--blue);
-      color: var(--white) !important;
-      border-radius: 6px !important;
-      padding: 7px 16px !important;
+      margin-left: 8px;
+      background: var(--blue-lt) !important;
+      color: #fff !important;
       font-weight: 600 !important;
-      transition: background .2s !important;
+      border-radius: var(--r-btn) !important;
+      padding: 8px 16px !important;
+      transition: opacity var(--transition), transform var(--transition) !important;
     }
-    .nav-cta:hover { background: var(--blue-dk) !important; }
+    .nav-cta:hover { opacity: .9; transform: translateY(-1px); background: var(--blue-lt) !important; }
 
     /* Hamburger */
     .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; padding: 4px;
     }
     .hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--white);
-      border-radius: 2px;
+      display: block; width: 22px; height: 2px;
+      background: rgba(255,255,255,.8); border-radius: 2px;
       transition: transform .25s, opacity .25s;
     }
     .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    /* Mobile drawer */
     .mobile-menu {
-      display: none;
-      flex-direction: column;
-      background: var(--navy-mid);
-      padding: 16px 24px 24px;
+      display: none; flex-direction: column;
+      background: var(--navy-mid); padding: 8px 20px 20px;
     }
     .mobile-menu.open { display: flex; }
     .mobile-menu a {
-      color: rgba(255,255,255,.8);
-      padding: 11px 0;
-      font-size: .95rem;
-      border-bottom: 1px solid rgba(255,255,255,.07);
+      color: rgba(255,255,255,.75); font-size: .9rem; font-weight: 500;
+      padding: 12px 4px; border-bottom: 1px solid rgba(255,255,255,.07);
     }
     .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu .sub { padding-left: 16px; font-size: .85rem; color: rgba(255,255,255,.5); }
 
-    /* ── HERO ──────────────────────────────────────── */
+    /* ════════════════════════════════════
+       HERO
+    ════════════════════════════════════ */
     .hero {
-      background: linear-gradient(135deg, var(--navy) 0%, #1a3a6b 100%);
-      color: var(--white);
+      background: var(--navy);
+      padding: 96px 32px 80px;
       text-align: center;
-      padding: 96px 24px 80px;
+      position: relative; overflow: hidden;
     }
-    .hero-eyebrow {
-      display: inline-block;
-      font-size: .75rem;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--blue);
-      background: rgba(59,130,246,.12);
-      border: 1px solid rgba(59,130,246,.25);
-      border-radius: 99px;
-      padding: 4px 14px;
-      margin-bottom: 24px;
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(14,165,233,.12) 0%, transparent 70%);
+      pointer-events: none;
     }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--blue-lt);
+      background: rgba(14,165,233,.1); border: 1px solid rgba(14,165,233,.2);
+      border-radius: 99px; padding: 5px 14px; margin-bottom: 28px;
+    }
+    .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--blue-lt); }
     .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.25rem);
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -.03em;
-      max-width: 760px;
-      margin: 0 auto 20px;
+      font-size: clamp(2rem, 5.5vw, 3.5rem);
+      font-weight: 700; color: #fff;
+      letter-spacing: -.04em; line-height: 1.12;
+      max-width: 720px; margin: 0 auto 20px;
     }
-    .hero h1 em { font-style: normal; color: var(--blue); }
+    .hero h1 span { color: var(--blue-lt); }
     .hero p {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,.7);
-      max-width: 540px;
-      margin: 0 auto 40px;
+      font-size: 1.05rem; color: rgba(255,255,255,.6);
+      max-width: 520px; margin: 0 auto 40px; line-height: 1.75;
     }
     .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: .9rem;
-      font-weight: 600;
-      padding: 12px 24px;
-      border-radius: 8px;
-      transition: all .2s;
-      cursor: pointer;
-      border: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .9rem; font-weight: 600;
+      padding: 12px 24px; border-radius: var(--r-btn);
+      border: none; transition: all var(--transition); cursor: pointer;
     }
-    .btn-primary { background: var(--blue); color: var(--white); }
-    .btn-primary:hover { background: var(--blue-dk); transform: translateY(-1px); }
-    .btn-ghost {
-      background: rgba(255,255,255,.08);
-      color: var(--white);
+    .btn svg { width: 16px; height: 16px; }
+    .btn-primary { background: var(--blue-lt); color: #fff; }
+    .btn-primary:hover { opacity: .9; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(14,165,233,.3); }
+    .btn-outline {
+      background: transparent; color: rgba(255,255,255,.8);
       border: 1px solid rgba(255,255,255,.2);
     }
-    .btn-ghost:hover { background: rgba(255,255,255,.15); }
+    .btn-outline:hover { background: rgba(255,255,255,.07); color: #fff; }
 
-    /* Trust bar */
-    .trust-bar {
-      background: rgba(255,255,255,.04);
+    .hero-trust {
+      margin-top: 64px;
       border-top: 1px solid rgba(255,255,255,.07);
-      padding: 18px 24px;
-      text-align: center;
-      font-size: .8rem;
-      color: rgba(255,255,255,.45);
-      letter-spacing: .04em;
+      padding-top: 32px;
+      display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;
     }
+    .trust-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: .8rem; color: rgba(255,255,255,.4);
+      font-family: 'DM Mono', monospace; letter-spacing: .02em;
+    }
+    .trust-item svg { width: 14px; height: 14px; color: var(--blue-lt); opacity: .7; }
 
-    /* ── PRODUCTS ──────────────────────────────────── */
+    /* ════════════════════════════════════
+       PRODUCTS
+    ════════════════════════════════════ */
     .products {
       background: var(--gray-bg);
-      padding: 88px 24px;
+      padding: 96px 32px;
     }
-    .section-header {
-      text-align: center;
-      margin-bottom: 56px;
-    }
+    .section-intro { text-align: center; margin-bottom: 56px; }
     .section-label {
-      font-size: .72rem;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--blue);
+      font-size: .7rem; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--blue);
       margin-bottom: 12px;
     }
-    .section-header h2 {
-      font-size: clamp(1.6rem, 3.5vw, 2.25rem);
-      font-weight: 700;
-      color: var(--navy);
-      letter-spacing: -.02em;
-      margin-bottom: 12px;
+    .section-intro h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.25rem); font-weight: 700;
+      color: var(--navy); letter-spacing: -.03em; margin-bottom: 12px;
     }
-    .section-header p {
-      color: var(--muted);
-      font-size: 1rem;
-      max-width: 500px;
-      margin: 0 auto;
+    .section-intro p { color: var(--muted); font-size: .95rem; max-width: 480px; margin: 0 auto; }
+
+    .cards-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
     }
 
-    .cards {
-      max-width: 1160px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
-    }
     .card {
-      background: var(--white);
-      border: 1px solid var(--gray-bd);
-      border-radius: 14px;
-      padding: 36px 32px;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      transition: transform .25s, box-shadow .25s;
-      position: relative;
-      overflow: hidden;
+      background: #fff; border: 1px solid var(--gray-bd);
+      border-radius: var(--r-card); padding: 36px 32px 32px;
+      box-shadow: var(--shadow-sm);
+      display: flex; flex-direction: column;
+      position: relative; overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
     }
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--blue), #60a5fa);
-      opacity: 0;
-      transition: opacity .25s;
+    .card::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-lt));
+      opacity: 0; transition: opacity var(--transition);
     }
-    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(15,30,53,.13); }
-    .card:hover::before { opacity: 1; }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .card:hover::after { opacity: 1; }
 
+    .card-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 20px; }
     .card-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 10px;
-      background: rgba(59,130,246,.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      font-size: 1.4rem;
+      width: 44px; height: 44px; border-radius: 10px;
+      background: linear-gradient(135deg, rgba(29,111,164,.1), rgba(14,165,233,.07));
+      border: 1px solid rgba(29,111,164,.1);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
-    .card h3 {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--navy);
-      margin-bottom: 8px;
-      letter-spacing: -.01em;
+    .card-icon svg { width: 20px; height: 20px; color: var(--blue); }
+    .card-title-block h3 {
+      font-size: 1.15rem; font-weight: 700; color: var(--navy);
+      letter-spacing: -.02em; margin-bottom: 3px;
     }
-    .card .card-desc {
-      font-size: .875rem;
-      color: var(--muted);
-      margin-bottom: 24px;
-    }
-    .feature-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      flex: 1;
-      margin-bottom: 28px;
-    }
-    .feature-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: .875rem;
-      color: var(--text);
-      line-height: 1.5;
-    }
-    .feature-list li::before {
-      content: '✓';
-      flex-shrink: 0;
-      color: var(--blue);
-      font-weight: 700;
-      font-size: .8rem;
-      margin-top: 2px;
-    }
-    .card-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: .875rem;
-      font-weight: 600;
-      color: var(--blue);
-      transition: gap .2s;
-    }
-    .card-link:hover { gap: 10px; }
-    .card-link::after { content: '→'; }
+    .card-title-block span { font-size: .78rem; color: var(--muted); }
 
-    /* ── ABOUT STRIP ───────────────────────────────── */
-    .about-strip {
+    .card-desc { font-size: .875rem; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+
+    .features { display: flex; flex-direction: column; gap: 7px; flex: 1; margin-bottom: 28px; }
+    .features li {
+      display: flex; align-items: flex-start; gap: 9px;
+      font-size: .845rem; color: var(--text); line-height: 1.5;
+    }
+    .features li .check {
+      flex-shrink: 0; margin-top: 3px;
+      width: 15px; height: 15px; border-radius: 50%;
+      background: rgba(14,165,233,.1);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .features li .check svg { width: 9px; height: 9px; color: var(--blue-lt); }
+
+    .card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .85rem; font-weight: 600; color: var(--blue);
+      transition: gap var(--transition), color var(--transition);
+    }
+    .card-link:hover { gap: 10px; color: var(--blue-lt); }
+    .card-link svg { width: 14px; height: 14px; }
+
+    /* ════════════════════════════════════
+       ABOUT
+    ════════════════════════════════════ */
+    .about {
       background: var(--navy);
-      color: var(--white);
-      padding: 72px 24px;
+      padding: 88px 32px;
     }
     .about-inner {
-      max-width: 1160px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
     }
-    .about-inner h2 {
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      font-weight: 700;
-      letter-spacing: -.02em;
-      margin-bottom: 16px;
+    .about-copy .section-label { color: rgba(14,165,233,.8); margin-bottom: 14px; }
+    .about-copy h2 {
+      font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 700; color: #fff;
+      letter-spacing: -.03em; margin-bottom: 18px; line-height: 1.25;
     }
-    .about-inner p { color: rgba(255,255,255,.65); font-size: .95rem; line-height: 1.75; }
-    .stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
+    .about-copy p { color: rgba(255,255,255,.55); font-size: .95rem; line-height: 1.8; }
+
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .stat-card {
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px; padding: 28px 24px;
+      transition: background var(--transition);
     }
-    .stat {
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 12px;
-      padding: 24px;
-    }
+    .stat-card:hover { background: rgba(255,255,255,.07); }
     .stat-number {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--blue);
-      letter-spacing: -.03em;
-      line-height: 1;
-      margin-bottom: 4px;
+      font-size: 2.25rem; font-weight: 700; color: var(--blue-lt);
+      letter-spacing: -.04em; line-height: 1; margin-bottom: 6px;
+      font-family: 'DM Mono', monospace;
     }
-    .stat-label { font-size: .8rem; color: rgba(255,255,255,.5); }
+    .stat-desc { font-size: .8rem; color: rgba(255,255,255,.4); line-height: 1.5; }
 
-    /* ── CTA SECTION ───────────────────────────────── */
-    .cta-section {
-      background: var(--gray-bg);
-      padding: 80px 24px;
-      text-align: center;
-      border-top: 1px solid var(--gray-bd);
+    /* ════════════════════════════════════
+       CONTACT
+    ════════════════════════════════════ */
+    .contact-section {
+      background: var(--gray-bg); padding: 88px 32px;
+      border-top: 1px solid var(--gray-bd); text-align: center;
     }
-    .cta-section h2 {
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      font-weight: 700;
-      color: var(--navy);
-      letter-spacing: -.02em;
-      margin-bottom: 12px;
+    .contact-section .section-label { margin-bottom: 12px; }
+    .contact-section h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700;
+      color: var(--navy); letter-spacing: -.03em; margin-bottom: 10px;
     }
-    .cta-section p { color: var(--muted); margin-bottom: 32px; }
-    .cta-contacts {
-      display: flex;
-      gap: 24px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 32px;
-    }
-    .contact-pill {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--white);
-      border: 1px solid var(--gray-bd);
-      border-radius: 99px;
-      padding: 10px 20px;
-      font-size: .875rem;
-      font-weight: 500;
-      color: var(--text);
-      box-shadow: 0 1px 4px rgba(0,0,0,.05);
-    }
-    .contact-pill .icon { font-size: 1rem; }
+    .contact-section > p { color: var(--muted); margin-bottom: 40px; }
 
-    /* ── FOOTER ────────────────────────────────────── */
+    .contact-cards {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 36px;
+    }
+    .contact-card {
+      background: #fff; border: 1px solid var(--gray-bd);
+      border-radius: 10px; padding: 18px 24px;
+      display: flex; align-items: center; gap: 12px;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .contact-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .contact-card-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: rgba(29,111,164,.08);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .contact-card-icon svg { width: 16px; height: 16px; color: var(--blue); }
+    .contact-card-body label { font-size: .7rem; font-weight: 600; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; display: block; margin-bottom: 1px; }
+    .contact-card-body span { font-size: .9rem; font-weight: 600; color: var(--text); }
+
+    /* ════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════ */
     footer {
       background: var(--navy);
-      color: rgba(255,255,255,.55);
-      padding: 48px 24px 32px;
+      padding: 56px 32px 32px;
+      color: rgba(255,255,255,.45);
     }
-    .footer-inner {
-      max-width: 1160px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 48px;
-      padding-bottom: 40px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
+    .footer-top {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 64px;
+      padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,.07);
     }
-    .footer-brand .logo { font-size: 1rem; margin-bottom: 10px; display: block; }
-    .footer-brand p { font-size: .8rem; line-height: 1.7; }
+    .footer-brand .logo { margin-bottom: 16px; }
+    .footer-brand p { font-size: .82rem; line-height: 1.8; }
     footer h4 {
-      font-size: .75rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.85);
-      margin-bottom: 16px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: rgba(255,255,255,.8);
+      margin-bottom: 18px;
     }
-    footer ul { display: flex; flex-direction: column; gap: 8px; }
-    footer ul li a {
-      font-size: .85rem;
-      color: rgba(255,255,255,.5);
-      transition: color .15s;
-    }
-    footer ul li a:hover { color: var(--white); }
+    footer ul { display: flex; flex-direction: column; gap: 10px; }
+    footer ul a { font-size: .85rem; color: rgba(255,255,255,.45); transition: color var(--transition); }
+    footer ul a:hover { color: rgba(255,255,255,.9); }
+
     .footer-bottom {
-      max-width: 1160px;
-      margin: 24px auto 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      font-size: .78rem;
+      max-width: 1200px; margin: 24px auto 0;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+      font-size: .78rem; font-family: 'DM Mono', monospace;
     }
 
-    /* ── RESPONSIVE ────────────────────────────────── */
+    /* ════════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .cards-grid { grid-template-columns: 1fr 1fr; }
+    }
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
-
-      .about-inner { grid-template-columns: 1fr; gap: 36px; }
-      .stats { grid-template-columns: 1fr 1fr; }
-
-      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+      nav { padding: 0 20px; }
+      .hero { padding: 72px 20px 64px; }
+      .hero-trust { gap: 24px; }
+      .products { padding: 72px 20px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .about { padding: 72px 20px; }
+      .about-inner { grid-template-columns: 1fr; gap: 48px; }
+      .contact-section { padding: 72px 20px; }
+      .footer-top { grid-template-columns: 1fr; gap: 36px; }
       .footer-bottom { justify-content: center; text-align: center; }
     }
     @media (max-width: 480px) {
-      .hero { padding: 64px 20px 56px; }
-      .products { padding: 64px 20px; }
-      .cards { grid-template-columns: 1fr; }
-      .stats { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .hero h1 { font-size: 1.9rem; }
+      .hero-trust { flex-direction: column; align-items: center; gap: 16px; }
     }
-
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { transition: none !important; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
     }
   </style>
 </head>
 <body>
 
-<!-- ── HEADER / NAV ── -->
+<!-- ── NAV ── -->
 <header>
   <nav>
-    <a href="#" class="logo">Hoffmann<span>IT</span></a>
+    <a href="#" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17.5h7M17.5 14v7"/>
+        </svg>
+      </div>
+      <span class="logo-text">Hoffmann<em>IT</em></span>
+    </a>
 
     <ul class="nav-links">
       <li class="dropdown">
-        <a href="#">Produkte</a>
+        <a href="#">Produkte
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+        </a>
         <ul class="dropdown-menu">
-          <li><a href="https://bauleitung-it.de" target="_blank">Bauleitung-IT</a></li>
-          <li><a href="https://hi-export.de" target="_blank">HI-Export</a></li>
-          <li><a href="#produkte">Individualsoftware</a></li>
+          <li>
+            <a href="https://bauleitung-it.de" target="_blank" rel="noopener">
+              <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
+              Bauleitung-IT
+            </a>
+          </li>
+          <li>
+            <a href="https://hi-export.de" target="_blank" rel="noopener">
+              <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+              HI-Export
+            </a>
+          </li>
+          <li>
+            <a href="#produkte">
+              <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+              Individualsoftware
+            </a>
+          </li>
         </ul>
       </li>
       <li><a href="#unternehmen">Unternehmen</a></li>
@@ -507,16 +448,16 @@
       <li><a href="#kontakt" class="nav-cta">Rückruf anfragen</a></li>
     </ul>
 
-    <button class="hamburger" id="hamburger" aria-label="Menü öffnen">
+    <button class="hamburger" id="hamburger" aria-label="Menü öffnen" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </nav>
 
-  <div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu" id="mobile-menu" role="navigation">
     <a href="#">Produkte</a>
-    <a href="https://bauleitung-it.de" target="_blank" style="padding-left:16px;font-size:.85rem;">↳ Bauleitung-IT</a>
-    <a href="https://hi-export.de" target="_blank" style="padding-left:16px;font-size:.85rem;">↳ HI-Export</a>
-    <a href="#produkte" style="padding-left:16px;font-size:.85rem;">↳ Individualsoftware</a>
+    <a href="https://bauleitung-it.de" target="_blank" rel="noopener" class="sub">↳ Bauleitung-IT</a>
+    <a href="https://hi-export.de" target="_blank" rel="noopener" class="sub">↳ HI-Export</a>
+    <a href="#produkte" class="sub">↳ Individualsoftware</a>
     <a href="#unternehmen">Unternehmen</a>
     <a href="#kontakt">Kontakt</a>
     <a href="#impressum">Impressum</a>
@@ -526,130 +467,219 @@
 
 <!-- ── HERO ── -->
 <section class="hero">
-  <div class="hero-eyebrow">Seit 1994 · Made in Bayern</div>
-  <h1>Wir erleichtern<br><em>Ihren Arbeitsalltag</em></h1>
-  <p>Branchensoftware und individuelle Entwicklungen für Unternehmen — präzise, verlässlich, seit über 30 Jahren.</p>
+  <div class="hero-badge">Seit 1994 · Made in Bayern</div>
+  <h1>Software, die Ihren<br><span>Arbeitsalltag erleichtert</span></h1>
+  <p>Branchenlösungen und individuelle Entwicklungen für Unternehmen — präzise, verlässlich, persönlich betreut.</p>
   <div class="hero-actions">
-    <a href="#produkte" class="btn btn-primary">Produkte entdecken</a>
-    <a href="#kontakt" class="btn btn-ghost">Kostenlos beraten lassen</a>
+    <a href="#produkte" class="btn btn-primary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      Produkte entdecken
+    </a>
+    <a href="#kontakt" class="btn btn-outline">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.37 2 2 0 0 1 3.6 1.19h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
+      Kostenlos beraten lassen
+    </a>
   </div>
-  <div class="trust-bar">
-    Über 30 Jahre Branchenerfahrung &nbsp;·&nbsp; Einsatz in deutschen Konzernen &nbsp;·&nbsp; Persönlicher Support
+
+  <div class="hero-trust">
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      30+ Jahre Erfahrung
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+      Einsatz in deutschen Konzernen
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Persönlicher Support
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Bayern, Deutschland
+    </div>
   </div>
 </section>
 
 <!-- ── PRODUKTE ── -->
 <section class="products" id="produkte">
-  <div class="section-header">
+  <div class="section-intro">
     <div class="section-label">Unsere Lösungen</div>
-    <h2>Software, die Ihre Prozesse vereinfacht</h2>
-    <p>Drei spezialisierte Produkte für unterschiedliche Anforderungen — alle aus einer Hand.</p>
+    <h2>Software für Ihre Branche</h2>
+    <p>Drei spezialisierte Produkte — alle aus einer Hand, alle mit persönlichem Support.</p>
   </div>
 
-  <div class="cards">
+  <div class="cards-grid">
 
-    <!-- Karte 1: Bauleitung-IT -->
+    <!-- Bauleitung-IT -->
     <div class="card">
-      <div class="card-icon">🏗️</div>
-      <h3>Bauleitung-IT</h3>
-      <p class="card-desc">Die digitale Lösung für Bauprojekte — von der Planung bis zur Dokumentation.</p>
-      <ul class="feature-list">
-        <li>Projektverwaltung</li>
-        <li>Bautagebuch</li>
-        <li>Abnahmeprotokolle</li>
-        <li>Planverwaltung</li>
-        <li>Bilddokumentation</li>
-        <li>Online-Wetterdaten</li>
+      <div class="card-header">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="card-title-block">
+          <h3>Bauleitung-IT</h3>
+          <span>Bauprojekte digital verwalten</span>
+        </div>
+      </div>
+      <p class="card-desc">Die umfassende Lösung für Bauleitungen — von der Tagesplanung bis zur vollständigen Projektdokumentation.</p>
+      <ul class="features">
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Projektverwaltung</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Bautagebuch</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Abnahmeprotokolle</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Planverwaltung</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Bilddokumentation</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Online-Wetterdaten</li>
       </ul>
-      <a href="https://bauleitung-it.de" class="card-link" target="_blank">Mehr erfahren</a>
+      <a href="https://bauleitung-it.de" class="card-link" target="_blank" rel="noopener">
+        Mehr erfahren
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
     </div>
 
-    <!-- Karte 2: HI-Export -->
+    <!-- HI-Export -->
     <div class="card">
-      <div class="card-icon">🌍</div>
-      <h3>HI-Export</h3>
-      <p class="card-desc">Exportkontrolle und Lizenzverwaltung — seit 1994 erfolgreich in Konzernen.</p>
-      <ul class="feature-list">
-        <li>Einzelgenehmigungen</li>
-        <li>Höchstbetragsgenehmigungen</li>
-        <li>Sammelausfuhrgenehmigungen (SAG)</li>
-        <li>Sanktionslistenscreening</li>
-        <li>Frühwarnanalyse</li>
-        <li>ELAN-K2-Schnittstelle</li>
-        <li>Offene ERP-/Zoll-Schnittstelle</li>
+      <div class="card-header">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="card-title-block">
+          <h3>HI-Export</h3>
+          <span>Exportkontrolle & Lizenzverwaltung</span>
+        </div>
+      </div>
+      <p class="card-desc">Professionelle Exportkontrolle für Konzerne — seit 1994 bewährt, mit direkter ELAN-K2-Schnittstelle.</p>
+      <ul class="features">
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Einzelgenehmigungen</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Höchstbetragsgenehmigungen</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Sammelausfuhrgenehmigungen (SAG)</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Sanktionslistenscreening</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Frühwarnanalyse</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>ELAN-K2-Schnittstelle</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Offene ERP-/Zoll-Schnittstelle</li>
       </ul>
-      <a href="https://hi-export.de" class="card-link" target="_blank">Mehr erfahren</a>
+      <a href="https://hi-export.de" class="card-link" target="_blank" rel="noopener">
+        Mehr erfahren
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
     </div>
 
-    <!-- Karte 3: Individualsoftware -->
+    <!-- Individualsoftware -->
     <div class="card">
-      <div class="card-icon">⚙️</div>
-      <h3>Individualsoftware</h3>
-      <p class="card-desc">Maßgeschneiderte Entwicklung für Ihre spezifischen Anforderungen.</p>
-      <ul class="feature-list">
-        <li>Agile Umsetzung Ihrer Anforderungen</li>
-        <li>Schulung und Betreuung Ihrer Mitarbeiter</li>
-        <li>Supportverträge für reibungslose Nutzung</li>
+      <div class="card-header">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <div class="card-title-block">
+          <h3>Individualsoftware</h3>
+          <span>Maßgeschneiderte Entwicklung</span>
+        </div>
+      </div>
+      <p class="card-desc">Individuelle Softwarelösungen, die exakt auf Ihre Prozesse zugeschnitten sind — agil entwickelt, nachhaltig betreut.</p>
+      <ul class="features">
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Agile Umsetzung Ihrer Anforderungen</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Schulung und Betreuung Ihrer Mitarbeiter</li>
+        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Supportverträge für reibungslose Nutzung</li>
       </ul>
-      <a href="#kontakt" class="card-link">Anfrage stellen</a>
+      <a href="#kontakt" class="card-link">
+        Anfrage stellen
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
     </div>
 
   </div>
 </section>
 
 <!-- ── ÜBER UNS ── -->
-<section class="about-strip" id="unternehmen">
+<section class="about" id="unternehmen">
   <div class="about-inner">
-    <div>
+    <div class="about-copy">
+      <div class="section-label">Über uns</div>
       <h2>Mehr als 30 Jahre Erfahrung in Branchensoftware</h2>
-      <p>Seit 1994 entwickeln wir Software, die den Alltag von Unternehmen wirklich erleichtert. Unsere Lösungen werden in mittelständischen Betrieben und Konzernen eingesetzt — mit persönlichem Support direkt vom Entwickler.</p>
+      <p>Seit 1994 entwickeln wir Software, die den Alltag von Unternehmen wirklich erleichtert. Unsere Lösungen werden in mittelständischen Betrieben und Konzernen eingesetzt — mit persönlichem Support direkt vom Entwickler. Kein Ticketsystem, kein Callcenter. Echte Betreuung aus Bayern.</p>
     </div>
-    <div class="stats">
-      <div class="stat">
+    <div class="stats-grid">
+      <div class="stat-card">
         <div class="stat-number">30+</div>
-        <div class="stat-label">Jahre Erfahrung</div>
+        <div class="stat-desc">Jahre Branchenerfahrung</div>
       </div>
-      <div class="stat">
+      <div class="stat-card">
         <div class="stat-number">3</div>
-        <div class="stat-label">Produkte</div>
+        <div class="stat-desc">Spezialisierte Produkte</div>
       </div>
-      <div class="stat">
+      <div class="stat-card">
         <div class="stat-number">1994</div>
-        <div class="stat-label">Gegründet</div>
+        <div class="stat-desc">Gründungsjahr</div>
       </div>
-      <div class="stat">
+      <div class="stat-card">
         <div class="stat-number">100%</div>
-        <div class="stat-label">Made in Bayern</div>
+        <div class="stat-desc">Made in Bayern</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── KONTAKT CTA ── -->
-<section class="cta-section" id="kontakt">
+<!-- ── KONTAKT ── -->
+<section class="contact-section" id="kontakt">
   <div class="section-label">Kontakt</div>
   <h2>Kostenlos und unverbindlich anfragen</h2>
-  <p>Wir rufen Sie zurück, wenn Sie Zeit haben.</p>
-  <div class="cta-contacts">
-    <div class="contact-pill"><span class="icon">✆</span> +49 (0)8121 974694</div>
-    <div class="contact-pill"><span class="icon">🖷</span> +49 (0)8121 974693</div>
-    <div class="contact-pill"><span class="icon">✉</span> info@hoffmann-it.de</div>
+  <p>Wir rufen Sie zurück, wenn Sie Zeit haben — persönlich, ohne Warteschleife.</p>
+
+  <div class="contact-cards">
+    <div class="contact-card">
+      <div class="contact-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.37 2 2 0 0 1 3.6 1.19h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
+      </div>
+      <div class="contact-card-body">
+        <label>Telefon</label>
+        <span>+49 (0)8121 974694</span>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      </div>
+      <div class="contact-card-body">
+        <label>E-Mail</label>
+        <span>info@hoffmann-it.de</span>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div class="contact-card-body">
+        <label>Adresse</label>
+        <span>Am Heckenacker 10, 85652 Pliening</span>
+      </div>
+    </div>
   </div>
-  <a href="mailto:info@hoffmann-it.de" class="btn btn-primary">E-Mail schreiben</a>
+
+  <a href="mailto:info@hoffmann-it.de" class="btn btn-primary" style="background:var(--blue);color:#fff;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    E-Mail schreiben
+  </a>
 </section>
 
 <!-- ── FOOTER ── -->
 <footer>
-  <div class="footer-inner">
+  <div class="footer-top">
     <div class="footer-brand">
-      <span class="logo">Hoffmann<span>IT</span></span>
-      <p>Hoffmann Informationssysteme<br>Am Heckenacker 10<br>85652 Pliening<br><br>Tel.: +49 (0)8121 974694<br>info@hoffmann-it.de</p>
+      <a href="#" class="logo">
+        <div class="logo-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17.5h7M17.5 14v7"/>
+          </svg>
+        </div>
+        <span class="logo-text">Hoffmann<em>IT</em></span>
+      </a>
+      <p>Hoffmann Informationssysteme<br>Am Heckenacker 10<br>85652 Pliening<br><br>Tel.: +49 (0)8121 974694<br>Fax: +49 (0)8121 974693<br>info@hoffmann-it.de</p>
     </div>
     <div>
       <h4>Produkte</h4>
       <ul>
-        <li><a href="https://bauleitung-it.de" target="_blank">Bauleitung-IT</a></li>
-        <li><a href="https://hi-export.de" target="_blank">HI-Export</a></li>
+        <li><a href="https://bauleitung-it.de" target="_blank" rel="noopener">Bauleitung-IT</a></li>
+        <li><a href="https://hi-export.de" target="_blank" rel="noopener">HI-Export</a></li>
         <li><a href="#produkte">Individualsoftware</a></li>
       </ul>
     </div>
@@ -658,22 +688,31 @@
       <ul>
         <li><a href="#impressum" id="impressum">Impressum</a></li>
         <li><a href="#datenschutz" id="datenschutz">Datenschutz</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2024 Hoffmann Informationssysteme</span>
-    <span>Am Heckenacker 10 · 85652 Pliening</span>
+    <span>© 2024 Hoffmann Informationssysteme GmbH</span>
+    <span>Am Heckenacker 10 · 85652 Pliening · Bayern</span>
   </div>
 </footer>
 
 <script>
-  // Hamburger toggle
-  const btn = document.getElementById('hamburger');
-  const menu = document.getElementById('mobile-menu');
-  btn.addEventListener('click', () => {
-    btn.classList.toggle('open');
-    menu.classList.toggle('open');
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    const open = hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open);
+  });
+  // Close mobile menu on link click
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false);
+    });
   });
 </script>
 
