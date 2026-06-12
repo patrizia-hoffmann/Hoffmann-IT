@@ -1,750 +1,1011 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hoffmann Informationssysteme – Wir erleichtern Ihren Arbeitsalltag</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <style>
-    /* ── Reset ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; color: #1A2332; background: #fff; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
-    img { display: block; max-width: 100%; }
-    button { cursor: pointer; font-family: inherit; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hoffmann Informationssysteme – Branchensoftware seit 1994</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* ── Tokens ── */
-    :root {
-      --navy:     #0F2542;
-      --navy-mid: #163354;
-      --blue:     #1D6FA4;
-      --blue-lt:  #0EA5E9;
-      --gray-bg:  #F7F9FC;
-      --gray-bd:  #DDE3ED;
-      --text:     #1A2332;
-      --muted:    #64748B;
-      --white:    #FFFFFF;
-      --r-card:   12px;
-      --r-btn:    8px;
-      --shadow-sm: 0 1px 4px rgba(15,37,66,.06);
-      --shadow-md: 0 4px 20px rgba(15,37,66,.10);
-      --shadow-lg: 0 12px 40px rgba(15,37,66,.14);
-      --transition: 200ms ease;
-    }
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #1A2E45;
+    --blue: #1B5FA8;
+    --blue-light: #2E7FD4;
+    --accent: #2E7FD4;
+    --off-white: #F5F6F8;
+    --white: #FFFFFF;
+    --text: #0D1B2A;
+    --text-muted: #5A6B7D;
+    --text-light: #8A9BAD;
+    --border: #D8DDE4;
+    --border-light: #EAECF0;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
+    --max: 1140px;
+    --radius: 8px;
+    --radius-lg: 14px;
+  }
 
-    /* ════════════════════════════════════
-       NAV
-    ════════════════════════════════════ */
-    header {
-      position: sticky; top: 0; z-index: 200;
-      background: var(--navy);
-      border-bottom: 1px solid rgba(255,255,255,.07);
-    }
-    nav {
-      max-width: 1200px; margin: 0 auto;
-      padding: 0 32px; height: 64px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .logo {
-      display: flex; align-items: center; gap: 10px;
-      font-size: 1rem; font-weight: 700; color: #fff; letter-spacing: -.01em;
-    }
-    .logo-mark {
-      width: 32px; height: 32px; border-radius: 7px;
-      background: linear-gradient(135deg, var(--blue-lt), var(--blue));
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .logo-mark svg { width: 18px; height: 18px; }
-    .logo-text em { font-style: normal; color: var(--blue-lt); }
+  html { scroll-behavior: smooth; }
 
-    .nav-links { display: flex; align-items: center; gap: 2px; }
-    .nav-links a {
-      color: rgba(255,255,255,.7); font-size: .875rem; font-weight: 500;
-      padding: 6px 12px; border-radius: 6px;
-      transition: color var(--transition), background var(--transition);
-    }
-    .nav-links a:hover { color: #fff; background: rgba(255,255,255,.09); }
+  body {
+    font-family: var(--sans);
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
 
-    .dropdown { position: relative; }
-    .dropdown > a { display: flex; align-items: center; gap: 4px; }
-    .dropdown > a svg { width: 12px; height: 12px; opacity: .5; transition: transform var(--transition); }
-    .dropdown:hover > a svg { transform: rotate(180deg); }
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-light);
+  }
+  .nav-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 34px;
+    height: 34px;
+    background: var(--navy);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark span {
+    font-family: var(--serif);
+    color: var(--white);
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1;
+  }
+  .nav-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  .nav-logo-text strong {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+  }
+  .nav-logo-text small {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 14px;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: var(--radius);
+    transition: color 0.15s, background 0.15s;
+  }
+  .nav-links a:hover { color: var(--navy); background: var(--off-white); }
+  .nav-cta {
+    background: var(--navy) !important;
+    color: var(--white) !important;
+    font-weight: 500;
+  }
+  .nav-cta:hover { background: var(--navy-mid) !important; }
 
-    .dropdown-menu {
-      display: none; position: absolute; top: calc(100% + 10px); left: 0;
-      background: #fff; border: 1px solid var(--gray-bd);
-      border-radius: var(--r-card); box-shadow: var(--shadow-lg);
-      min-width: 210px; overflow: hidden;
-    }
-    .dropdown-menu a {
-      display: flex; align-items: center; gap: 10px;
-      color: var(--text) !important; padding: 11px 16px !important;
-      font-size: .875rem; background: transparent !important;
-      border-radius: 0 !important;
-      border-bottom: 1px solid var(--gray-bg);
-      transition: background var(--transition) !important;
-    }
-    .dropdown-menu a:last-child { border-bottom: none; }
-    .dropdown-menu a:hover { background: var(--gray-bg) !important; }
-    .dropdown-menu .menu-icon {
-      width: 28px; height: 28px; border-radius: 6px;
-      background: var(--gray-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .dropdown-menu .menu-icon svg { width: 14px; height: 14px; color: var(--blue); }
-    .dropdown:hover .dropdown-menu { display: block; }
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    color: var(--white);
+    padding: 7rem 2rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -120px;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: var(--blue);
+    opacity: 0.07;
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(46,127,212,0.15);
+    border: 1px solid rgba(46,127,212,0.3);
+    color: #7BB8F0;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: #7BB8F0;
+    border-radius: 50%;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 4vw, 3.4rem);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+    color: var(--white);
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: #7BB8F0;
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary:hover { background: #2570C0; transform: translateY(-1px); }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(255,255,255,0.2);
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: var(--white); }
 
-    .nav-cta {
-      margin-left: 8px;
-      background: var(--blue-lt) !important;
-      color: #fff !important;
-      font-weight: 600 !important;
-      border-radius: var(--r-btn) !important;
-      padding: 8px 16px !important;
-      transition: opacity var(--transition), transform var(--transition) !important;
-    }
-    .nav-cta:hover { opacity: .9; transform: translateY(-1px); background: var(--blue-lt) !important; }
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .stat-item { }
+  .stat-num {
+    display: block;
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
 
-    /* Hamburger */
-    .hamburger {
-      display: none; flex-direction: column; gap: 5px;
-      background: none; border: none; padding: 4px;
-    }
-    .hamburger span {
-      display: block; width: 22px; height: 2px;
-      background: rgba(255,255,255,.8); border-radius: 2px;
-      transition: transform .25s, opacity .25s;
-    }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  /* Hero right panel */
+  .hero-panel {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+  }
+  .hero-panel-title {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 1.25rem;
+  }
+  .product-card-mini {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: background 0.2s, border-color 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .product-card-mini:hover {
+    background: rgba(255,255,255,0.09);
+    border-color: rgba(46,127,212,0.4);
+  }
+  .product-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+  }
+  .icon-blue { background: rgba(46,127,212,0.2); }
+  .icon-teal { background: rgba(20,150,120,0.2); }
+  .icon-slate { background: rgba(255,255,255,0.1); }
+  .product-card-mini h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 3px;
+  }
+  .product-card-mini p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.4;
+  }
 
-    .mobile-menu {
-      display: none; flex-direction: column;
-      background: var(--navy-mid); padding: 8px 20px 20px;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      color: rgba(255,255,255,.75); font-size: .9rem; font-weight: 500;
-      padding: 12px 4px; border-bottom: 1px solid rgba(255,255,255,.07);
-    }
-    .mobile-menu a:last-child { border-bottom: none; }
-    .mobile-menu .sub { padding-left: 16px; font-size: .85rem; color: rgba(255,255,255,.5); }
+  /* ── TRUSTED BY ── */
+  .trust-bar {
+    background: var(--off-white);
+    border-bottom: 1px solid var(--border-light);
+    padding: 1.25rem 2rem;
+  }
+  .trust-bar-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .trust-label {
+    font-size: 12px;
+    color: var(--text-light);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .trust-items {
+    display: flex;
+    gap: 1.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .trust-item {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .trust-item::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--border);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
 
-    /* ════════════════════════════════════
-       HERO
-    ════════════════════════════════════ */
-    .hero {
-      background: var(--navy);
-      padding: 96px 32px 80px;
-      text-align: center;
-      position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(14,165,233,.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
-      color: var(--blue-lt);
-      background: rgba(14,165,233,.1); border: 1px solid rgba(14,165,233,.2);
-      border-radius: 99px; padding: 5px 14px; margin-bottom: 28px;
-    }
-    .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--blue-lt); }
-    .hero h1 {
-      font-size: clamp(2rem, 5.5vw, 3.5rem);
-      font-weight: 700; color: #fff;
-      letter-spacing: -.04em; line-height: 1.12;
-      max-width: 720px; margin: 0 auto 20px;
-    }
-    .hero h1 span { color: var(--blue-lt); }
-    .hero p {
-      font-size: 1.05rem; color: rgba(255,255,255,.6);
-      max-width: 520px; margin: 0 auto 40px; line-height: 1.75;
-    }
-    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  /* ── SECTION SHARED ── */
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: var(--max); margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    color: var(--navy);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 540px;
+    line-height: 1.7;
+  }
+  .section-head { margin-bottom: 3rem; }
 
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: .9rem; font-weight: 600;
-      padding: 12px 24px; border-radius: var(--r-btn);
-      border: none; transition: all var(--transition); cursor: pointer;
-    }
-    .btn svg { width: 16px; height: 16px; }
-    .btn-primary { background: var(--blue-lt); color: #fff; }
-    .btn-primary:hover { opacity: .9; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(14,165,233,.3); }
-    .btn-outline {
-      background: transparent; color: rgba(255,255,255,.8);
-      border: 1px solid rgba(255,255,255,.2);
-    }
-    .btn-outline:hover { background: rgba(255,255,255,.07); color: #fff; }
+  /* ── PRODUKTE ── */
+  #produkte { background: var(--white); }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .product-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+  }
+  .product-card:hover {
+    border-color: var(--blue);
+    box-shadow: 0 4px 24px rgba(27,95,168,0.08);
+    transform: translateY(-2px);
+  }
+  .product-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    margin-bottom: 1.5rem;
+  }
+  .product-card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--off-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 20px;
+  }
+  .product-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+  }
+  .product-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+    flex: 1;
+  }
+  .feature-list {
+    list-style: none;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .feature-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .feature-list li::before {
+    content: '';
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: #E8F2FF;
+    border: 1.5px solid #A8CBEF;
+    flex-shrink: 0;
+    margin-top: 2px;
+    position: relative;
+  }
+  .feature-list li::after {
+    display: none;
+  }
+  .checkmark {
+    display: inline-flex;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .product-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue);
+    text-decoration: none;
+    transition: gap 0.15s;
+  }
+  .product-link:hover { gap: 10px; }
+  .product-link svg { width: 14px; height: 14px; }
 
-    .hero-trust {
-      margin-top: 64px;
-      border-top: 1px solid rgba(255,255,255,.07);
-      padding-top: 32px;
-      display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;
-    }
-    .trust-item {
-      display: flex; align-items: center; gap: 8px;
-      font-size: .8rem; color: rgba(255,255,255,.4);
-      font-family: 'DM Mono', monospace; letter-spacing: .02em;
-    }
-    .trust-item svg { width: 14px; height: 14px; color: var(--blue-lt); opacity: .7; }
+  /* featured card */
+  .product-card.featured {
+    background: var(--navy);
+    border-color: var(--navy);
+  }
+  .product-card.featured h3,
+  .product-card.featured p { color: rgba(255,255,255,0.9); }
+  .product-card.featured .feature-list li { color: rgba(255,255,255,0.6); }
+  .product-card.featured .product-card-icon { background: rgba(255,255,255,0.08); }
+  .product-card.featured .product-link { color: #7BB8F0; }
+  .product-card.featured:hover { border-color: var(--navy); }
 
-    /* ════════════════════════════════════
-       PRODUCTS
-    ════════════════════════════════════ */
-    .products {
-      background: linear-gradient(180deg, var(--gray-bg) 0%, #EEF3F9 100%);
-      padding: 96px 32px;
-      position: relative;
-    }
-    .products::before {
-      content: '';
-      position: absolute; top: -10%; right: 5%;
-      width: 400px; height: 400px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(14,165,233,.08), transparent 70%);
-      pointer-events: none;
-    }
-    .section-intro { text-align: center; margin-bottom: 56px; }
-    .section-label {
-      font-size: .7rem; font-weight: 700; letter-spacing: .14em;
-      text-transform: uppercase; color: var(--blue);
-      margin-bottom: 12px;
-    }
-    .section-intro h2 {
-      font-size: clamp(1.6rem, 3.5vw, 2.25rem); font-weight: 700;
-      color: var(--navy); letter-spacing: -.03em; margin-bottom: 12px;
-    }
-    .section-intro p { color: var(--muted); font-size: .95rem; max-width: 480px; margin: 0 auto; }
+  /* ── EXPORTKONTROLLE DEEP DIVE ── */
+  #export { background: var(--off-white); }
+  .export-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .export-modules {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .module-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .module-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: #E8F2FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 18px;
+  }
+  .module-item h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 3px;
+  }
+  .module-item p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .export-info h2 { margin-bottom: 1rem; }
+  .info-block {
+    background: var(--white);
+    border-left: 3px solid var(--blue);
+    padding: 1.25rem 1.5rem;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    margin-top: 1.5rem;
+  }
+  .info-block p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .info-block strong { color: var(--navy); }
 
-    /* Bento Grid: zweite Karte breiter (HI-Export = Flaggschiff) */
-    .cards-grid {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-    }
-    .cards-grid .card:nth-child(2) {
-      grid-column: span 2;
-    }
+  /* ── WARUM HOFFMANN ── */
+  #warum { background: var(--white); }
+  .reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .reason-card {
+    padding: 0;
+  }
+  .reason-num {
+    font-family: var(--serif);
+    font-size: 3rem;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .reason-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .reason-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
 
-    .card {
-      background: rgba(255,255,255,.7);
-      backdrop-filter: blur(12px) saturate(180%);
-      -webkit-backdrop-filter: blur(12px) saturate(180%);
-      border: 1px solid rgba(221,227,237,.8);
-      border-radius: var(--r-card); padding: 36px 32px 32px;
-      box-shadow: var(--shadow-sm);
-      display: flex; flex-direction: column;
-      position: relative; overflow: hidden;
-      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-    }
-    .card::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(14,165,233,.05), transparent 60%);
-      opacity: 0; transition: opacity var(--transition); pointer-events: none;
-    }
-    .card::after {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--blue), var(--blue-lt));
-      opacity: 0; transition: opacity var(--transition);
-    }
-    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: rgba(29,111,164,.25); }
-    .card:hover::after { opacity: 1; }
-    .card:hover::before { opacity: 1; }
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--navy);
+    padding: 5rem 2rem;
+    color: var(--white);
+  }
+  .cta-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .cta-inner h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+  .cta-inner p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+  .cta-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .contact-info {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .contact-info a {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: color 0.15s;
+  }
+  .contact-info a:hover { color: var(--white); }
+  .contact-info svg { width: 16px; height: 16px; opacity: 0.6; }
 
-    /* Bento: breite HI-Export Karte zeigt Features im 2-Spalten-Grid */
-    .cards-grid .card:nth-child(2) .features {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 7px 20px;
-    }
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 2.5rem 2rem;
+    color: rgba(255,255,255,0.4);
+    font-size: 13px;
+  }
+  .footer-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .footer-links a {
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.15s;
+  }
+  .footer-links a:hover { color: rgba(255,255,255,0.7); }
 
-    .card-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 20px; }
-    .card-icon {
-      width: 44px; height: 44px; border-radius: 10px;
-      background: linear-gradient(135deg, rgba(29,111,164,.1), rgba(14,165,233,.07));
-      border: 1px solid rgba(29,111,164,.1);
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .card-icon svg { width: 20px; height: 20px; color: var(--blue); }
-    .card-title-block h3 {
-      font-size: 1.15rem; font-weight: 700; color: var(--navy);
-      letter-spacing: -.02em; margin-bottom: 3px;
-    }
-    .card-title-block span { font-size: .78rem; color: var(--muted); }
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-panel { display: none; }
+    .products-grid { grid-template-columns: 1fr; }
+    .export-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .reasons-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    .reasons-grid { grid-template-columns: 1fr; }
+    .hero { padding: 4.5rem 1.5rem 3.5rem; }
+    section { padding: 3.5rem 1.5rem; }
+    .hero-stats { gap: 1.25rem; }
+    .footer-inner { flex-direction: column; text-align: center; }
+  }
 
-    .card-desc { font-size: .875rem; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
 
-    .features { display: flex; flex-direction: column; gap: 7px; flex: 1; margin-bottom: 28px; }
-    .features li {
-      display: flex; align-items: flex-start; gap: 9px;
-      font-size: .845rem; color: var(--text); line-height: 1.5;
-    }
-    .features li .check {
-      flex-shrink: 0; margin-top: 3px;
-      width: 15px; height: 15px; border-radius: 50%;
-      background: rgba(14,165,233,.1);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .features li .check svg { width: 9px; height: 9px; color: var(--blue-lt); }
-
-    .card-link {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: .85rem; font-weight: 600; color: var(--blue);
-      transition: gap var(--transition), color var(--transition);
-    }
-    .card-link:hover { gap: 10px; color: var(--blue-lt); }
-    .card-link svg { width: 14px; height: 14px; }
-
-    /* ════════════════════════════════════
-       ABOUT
-    ════════════════════════════════════ */
-    .about {
-      background: var(--navy);
-      padding: 88px 32px;
-    }
-    .about-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-    }
-    .about-copy .section-label { color: rgba(14,165,233,.8); margin-bottom: 14px; }
-    .about-copy h2 {
-      font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 700; color: #fff;
-      letter-spacing: -.03em; margin-bottom: 18px; line-height: 1.25;
-    }
-    .about-copy p { color: rgba(255,255,255,.55); font-size: .95rem; line-height: 1.8; }
-
-    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .stat-card {
-      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
-      border-radius: 12px; padding: 28px 24px;
-      transition: background var(--transition);
-    }
-    .stat-card:hover { background: rgba(255,255,255,.07); }
-    .stat-number {
-      font-size: 2.25rem; font-weight: 700; color: var(--blue-lt);
-      letter-spacing: -.04em; line-height: 1; margin-bottom: 6px;
-      font-family: 'DM Mono', monospace;
-    }
-    .stat-desc { font-size: .8rem; color: rgba(255,255,255,.4); line-height: 1.5; }
-
-    /* ════════════════════════════════════
-       CONTACT
-    ════════════════════════════════════ */
-    .contact-section {
-      background: var(--gray-bg); padding: 88px 32px;
-      border-top: 1px solid var(--gray-bd); text-align: center;
-    }
-    .contact-section .section-label { margin-bottom: 12px; }
-    .contact-section h2 {
-      font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700;
-      color: var(--navy); letter-spacing: -.03em; margin-bottom: 10px;
-    }
-    .contact-section > p { color: var(--muted); margin-bottom: 40px; }
-
-    .contact-cards {
-      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 36px;
-    }
-    .contact-card {
-      background: #fff; border: 1px solid var(--gray-bd);
-      border-radius: 10px; padding: 18px 24px;
-      display: flex; align-items: center; gap: 12px;
-      box-shadow: var(--shadow-sm);
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-    .contact-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
-    .contact-card-icon {
-      width: 36px; height: 36px; border-radius: 8px;
-      background: rgba(29,111,164,.08);
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .contact-card-icon svg { width: 16px; height: 16px; color: var(--blue); }
-    .contact-card-body label { font-size: .7rem; font-weight: 600; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; display: block; margin-bottom: 1px; }
-    .contact-card-body span { font-size: .9rem; font-weight: 600; color: var(--text); }
-
-    /* ════════════════════════════════════
-       FOOTER
-    ════════════════════════════════════ */
-    footer {
-      background: var(--navy);
-      padding: 56px 32px 32px;
-      color: rgba(255,255,255,.45);
-    }
-    .footer-top {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 64px;
-      padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,.07);
-    }
-    .footer-brand .logo { margin-bottom: 16px; }
-    .footer-brand p { font-size: .82rem; line-height: 1.8; }
-    footer h4 {
-      font-size: .7rem; font-weight: 700; letter-spacing: .12em;
-      text-transform: uppercase; color: rgba(255,255,255,.8);
-      margin-bottom: 18px;
-    }
-    footer ul { display: flex; flex-direction: column; gap: 10px; }
-    footer ul a { font-size: .85rem; color: rgba(255,255,255,.45); transition: color var(--transition); }
-    footer ul a:hover { color: rgba(255,255,255,.9); }
-
-    .footer-bottom {
-      max-width: 1200px; margin: 24px auto 0;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 12px;
-      font-size: .78rem; font-family: 'DM Mono', monospace;
-    }
-
-    /* ════════════════════════════════════
-       RESPONSIVE
-    ════════════════════════════════════ */
-    @media (max-width: 1024px) {
-      .cards-grid { grid-template-columns: 1fr 1fr; }
-      .cards-grid .card:nth-child(2) { grid-column: span 2; }
-    }
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      nav { padding: 0 20px; }
-      .hero { padding: 72px 20px 64px; }
-      .hero-trust { gap: 24px; }
-      .products { padding: 72px 20px; }
-      .cards-grid { grid-template-columns: 1fr; }
-      .cards-grid .card:nth-child(2) { grid-column: span 1; }
-      .cards-grid .card:nth-child(2) .features { grid-template-columns: 1fr; }
-      .about { padding: 72px 20px; }
-      .about-inner { grid-template-columns: 1fr; gap: 48px; }
-      .contact-section { padding: 72px 20px; }
-      .footer-top { grid-template-columns: 1fr; gap: 36px; }
-      .footer-bottom { justify-content: center; text-align: center; }
-    }
-    @media (max-width: 480px) {
-      .stats-grid { grid-template-columns: 1fr 1fr; }
-      .hero h1 { font-size: 1.9rem; }
-      .hero-trust { flex-direction: column; align-items: center; gap: 16px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { transition: none !important; animation: none !important; }
-    }
-  </style>
+  /* Focus styles */
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+</style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
-<header>
-  <nav>
-    <a href="#" class="logo">
-      <div class="logo-mark">
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17.5h7M17.5 14v7"/>
-        </svg>
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" aria-label="Hoffmann Informationssysteme – Startseite">
+      <div class="nav-logo-mark"><span>H</span></div>
+      <div class="nav-logo-text">
+        <strong>Hoffmann IT</strong>
+        <small>Informationssysteme</small>
       </div>
-      <span class="logo-text">Hoffmann<em>IT</em></span>
     </a>
-
-    <ul class="nav-links">
-      <li class="dropdown">
-        <a href="#">Produkte
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-        </a>
-        <ul class="dropdown-menu">
-          <li>
-            <a href="https://bauleitung-it.de" target="_blank" rel="noopener">
-              <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
-              Bauleitung-IT
-            </a>
-          </li>
-          <li>
-            <a href="https://hi-export.de" target="_blank" rel="noopener">
-              <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
-              HI-Export
-            </a>
-          </li>
-          <li>
-            <a href="#produkte">
-              <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
-              Individualsoftware
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li><a href="#unternehmen">Unternehmen</a></li>
-      <li><a href="#kontakt">Kontakt</a></li>
-      <li><a href="#impressum">Impressum</a></li>
-      <li><a href="#datenschutz">Datenschutz</a></li>
-      <li><a href="#kontakt" class="nav-cta">Rückruf anfragen</a></li>
+    <ul class="nav-links" role="list">
+      <li><a href="#produkte">Produkte</a></li>
+      <li><a href="#export">Exportkontrolle</a></li>
+      <li><a href="#warum">Unternehmen</a></li>
+      <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
     </ul>
+  </div>
+</nav>
 
-    <button class="hamburger" id="hamburger" aria-label="Menü öffnen" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">Seit 1994 im Einsatz</div>
+      <h1>Software, die Ihre<br><em>Compliance</em> trägt</h1>
+      <p class="hero-sub">Bewährte Branchenlösungen für Exportkontrolle, Bauprojektmanagement und individuelle Unternehmensanwendungen. Entwickelt für den deutschen Mittelstand und Großkonzerne.</p>
+      <div class="hero-actions">
+        <a href="#kontakt" class="btn-primary">
+          Vorführung anfragen
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="14" height="14"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="#produkte" class="btn-ghost">Produkte entdecken</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">30+</span>
+          <span class="stat-label">Jahre Erfahrung</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">3</span>
+          <span class="stat-label">Branchenlösungen</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">BAFA</span>
+          <span class="stat-label">Zertifiziert</span>
+        </div>
+      </div>
+    </div>
 
-  <div class="mobile-menu" id="mobile-menu" role="navigation">
-    <a href="#">Produkte</a>
-    <a href="https://bauleitung-it.de" target="_blank" rel="noopener" class="sub">↳ Bauleitung-IT</a>
-    <a href="https://hi-export.de" target="_blank" rel="noopener" class="sub">↳ HI-Export</a>
-    <a href="#produkte" class="sub">↳ Individualsoftware</a>
-    <a href="#unternehmen">Unternehmen</a>
-    <a href="#kontakt">Kontakt</a>
-    <a href="#impressum">Impressum</a>
-    <a href="#datenschutz">Datenschutz</a>
+    <div class="hero-panel" aria-hidden="true">
+      <div class="hero-panel-title">Unsere Produkte</div>
+
+      <a href="https://hi-export.de" class="product-card-mini">
+        <div class="product-icon icon-blue">
+          <svg viewBox="0 0 20 20" fill="none" stroke="#7BB8F0" stroke-width="1.5" stroke-linecap="round" width="20" height="20"><path d="M10 2L18 6v8l-8 4-8-4V6l8-4z"/><path d="M10 10l8-4M10 10v10M10 10L2 6"/></svg>
+        </div>
+        <div>
+          <h3>HI-Export</h3>
+          <p>Professionelle Exportkontrolle mit ELAN-K2-Schnittstelle und Sanktionslisten-Screening</p>
+        </div>
+      </a>
+
+      <a href="https://bauleitung-it.de" class="product-card-mini">
+        <div class="product-icon icon-teal">
+          <svg viewBox="0 0 20 20" fill="none" stroke="#6DCFB8" stroke-width="1.5" stroke-linecap="round" width="20" height="20"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="11" y="3" width="6" height="6" rx="1"/><rect x="3" y="11" width="6" height="6" rx="1"/><rect x="11" y="11" width="6" height="6" rx="1"/></svg>
+        </div>
+        <div>
+          <h3>Bauleitung-IT</h3>
+          <p>Digitales Baustellen-Management mit Bautagebuch, Abnahmeprotokollen und Wetterdaten</p>
+        </div>
+      </a>
+
+      <a href="https://hoffmann-it.de/individualsoftware/" class="product-card-mini">
+        <div class="product-icon icon-slate">
+          <svg viewBox="0 0 20 20" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" width="20" height="20"><path d="M4 6l4-3 4 3v5l-4 3-4-3V6z"/><path d="M12 6h4v10h-4"/></svg>
+        </div>
+        <div>
+          <h3>Individualsoftware</h3>
+          <p>Maßgeschneiderte Client-Server- und Webanwendungen im Microsoft-Umfeld</p>
+        </div>
+      </a>
+    </div>
   </div>
 </header>
 
-<!-- ── HERO ── -->
-<section class="hero">
-  <div class="hero-badge">Seit 1994 · Made in Bayern</div>
-  <h1>Software, die Ihren<br><span>Arbeitsalltag erleichtert</span></h1>
-  <p>Branchenlösungen und individuelle Entwicklungen für Unternehmen — präzise, verlässlich, persönlich betreut.</p>
-  <div class="hero-actions">
-    <a href="#produkte" class="btn btn-primary">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      Produkte entdecken
-    </a>
-    <a href="#kontakt" class="btn btn-outline">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.37 2 2 0 0 1 3.6 1.19h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
-      Kostenlos beraten lassen
-    </a>
-  </div>
-
-  <div class="hero-trust">
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      30+ Jahre Erfahrung
-    </div>
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-      Einsatz in deutschen Konzernen
-    </div>
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      Persönlicher Support
-    </div>
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      Bayern, Deutschland
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <span class="trust-label">Eingesetzt bei</span>
+    <div class="trust-items">
+      <span class="trust-item">Großkonzernen</span>
+      <span class="trust-item">Mittelständischen Betrieben</span>
+      <span class="trust-item">Bauprojektleitern</span>
+      <span class="trust-item">Export-Compliance-Teams</span>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ── PRODUKTE ── -->
-<section class="products" id="produkte">
-  <div class="section-intro">
-    <div class="section-label">Unsere Lösungen</div>
-    <h2>Software für Ihre Branche</h2>
-    <p>Drei spezialisierte Produkte — alle aus einer Hand, alle mit persönlichem Support.</p>
-  </div>
-
-  <div class="cards-grid">
-
-    <!-- Bauleitung-IT -->
-    <div class="card">
-      <div class="card-header">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </div>
-        <div class="card-title-block">
-          <h3>Bauleitung-IT</h3>
-          <span>Bauprojekte digital verwalten</span>
-        </div>
-      </div>
-      <p class="card-desc">Die umfassende Lösung für Bauleitungen — von der Tagesplanung bis zur vollständigen Projektdokumentation.</p>
-      <ul class="features">
-        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Projektverwaltung</li>
-        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Bautagebuch</li>
-        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Abnahmeprotokolle</li>
-        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Planverwaltung</li>
-        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Bilddokumentation</li>
-        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Online-Wetterdaten</li>
-      </ul>
-      <a href="https://bauleitung-it.de" class="card-link" target="_blank" rel="noopener">
-        Mehr erfahren
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </a>
+<!-- PRODUKTE -->
+<section id="produkte">
+  <div class="section-inner">
+    <div class="section-head">
+      <p class="section-eyebrow">Produkte</p>
+      <h2 class="section-title">Drei Lösungen für<br>anspruchsvolle Anforderungen</h2>
+      <p class="section-sub">Jedes Produkt wurde gemeinsam mit Unternehmen entwickelt, die hohe Anforderungen an Zuverlässigkeit, Rechtssicherheit und Integration stellen.</p>
     </div>
 
-    <!-- HI-Export -->
-    <div class="card">
-      <div class="card-header">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        </div>
-        <div class="card-title-block">
+    <div class="products-grid">
+
+      <!-- HI-Export -->
+      <div class="product-card featured">
+        <div class="product-card-header">
+          <div class="product-card-icon">
+            <svg viewBox="0 0 22 22" fill="none" stroke="rgba(123,184,240,0.9)" stroke-width="1.5" stroke-linecap="round" width="22" height="22"><path d="M11 2L20 6.5v9L11 20l-9-4.5v-9L11 2z"/><path d="M11 11L20 6.5M11 11v9M11 11L2 6.5"/></svg>
+          </div>
           <h3>HI-Export</h3>
-          <span>Exportkontrolle & Lizenzverwaltung</span>
         </div>
+        <p>Umfassendes System zur Verwaltung von Ausfuhrgenehmigungen, Sanktionslisten-Screening und ELAN-K2-Meldungen — bekannt beim BAFA, seit über 30 Jahren bei Konzernen im Einsatz.</p>
+        <ul class="feature-list">
+          <li>Einzel-, Höchstbetrags- &amp; Sammelgenehmigungen (SAG)</li>
+          <li>Sanktionslisten-Screening mit EU-Terrorliste</li>
+          <li>ELAN-K2-Schnittstelle für Halbjahresmeldungen</li>
+          <li>Frühwarnanalyse und Fristen-Monitoring</li>
+          <li>Schnittstelle zu ERP- und Zollsystemen</li>
+        </ul>
+        <a href="https://hi-export.de" class="product-link">
+          HI-Export im Detail
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
       </div>
-      <p class="card-desc">Professionelle Exportkontrolle für Konzerne — seit 1994 bewährt, mit direkter ELAN-K2-Schnittstelle.</p>
-      <ul class="features">
-        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Einzelgenehmigungen</li>
-        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Höchstbetragsgenehmigungen</li>
-        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Sammelausfuhrgenehmigungen (SAG)</li>
-        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Sanktionslistenscreening</li>
-        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Frühwarnanalyse</li>
-        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>ELAN-K2-Schnittstelle</li>
-        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Offene ERP-/Zoll-Schnittstelle</li>
-      </ul>
-      <a href="https://hi-export.de" class="card-link" target="_blank" rel="noopener">
-        Mehr erfahren
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </a>
-    </div>
 
-    <!-- Individualsoftware -->
-    <div class="card">
-      <div class="card-header">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      <!-- Bauleitung-IT -->
+      <div class="product-card">
+        <div class="product-card-header">
+          <div class="product-card-icon">
+            <svg viewBox="0 0 22 22" fill="none" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" width="22" height="22"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="12" y="3" width="7" height="7" rx="1"/><rect x="3" y="12" width="7" height="7" rx="1"/><rect x="12" y="12" width="7" height="7" rx="1"/></svg>
+          </div>
+          <h3>Bauleitung-IT</h3>
         </div>
-        <div class="card-title-block">
+        <p>Modernes Baustellen-Management-System für Projektverwaltung, digitales Bautagebuch und vollständige Dokumentation – auch offline nutzbar.</p>
+        <ul class="feature-list">
+          <li>Digitales Bautagebuch und Abnahmeprotokolle</li>
+          <li>Planverwaltung und Bilddokumentation</li>
+          <li>Online-Wetterdaten-Integration</li>
+          <li>Projektverwaltung für mehrere Baustellen</li>
+        </ul>
+        <a href="https://bauleitung-it.de" class="product-link">
+          Bauleitung-IT entdecken
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
+
+      <!-- Individualsoftware -->
+      <div class="product-card">
+        <div class="product-card-header">
+          <div class="product-card-icon">
+            <svg viewBox="0 0 22 22" fill="none" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round" width="22" height="22"><polyline points="6 3 3 11 9 11 7 19 19 9 13 9 16 3 6 3"/></svg>
+          </div>
           <h3>Individualsoftware</h3>
-          <span>Maßgeschneiderte Entwicklung</span>
+        </div>
+        <p>Wenn Standardsoftware nicht ausreicht: wir entwickeln maßgeschneiderte Lösungen im Microsoft-Umfeld – von der Analyse bis zum laufenden Support.</p>
+        <ul class="feature-list">
+          <li>Client-Server-Anwendungen (.NET, VB, Access)</li>
+          <li>Webanwendungen mit .NET, ASP &amp; IIS</li>
+          <li>Datenbankentwicklung (SQL-Server, Oracle)</li>
+          <li>Agile Umsetzung mit Schulung &amp; Support</li>
+        </ul>
+        <a href="https://hoffmann-it.de/individualsoftware/" class="product-link">
+          Mehr zur Individualentwicklung
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPORTKONTROLLE -->
+<section id="export">
+  <div class="section-inner">
+    <div class="export-grid">
+      <div class="export-info">
+        <p class="section-eyebrow">HI-Export im Detail</p>
+        <h2 class="section-title">Rechtssichere Exportkontrolle — ohne Kompromisse</h2>
+        <p class="section-sub">Verstöße gegen Exportkontrollgesetze können weitreichende Folgen haben. Die Verantwortung liegt bei Ihrer Geschäftsleitung. HI-Export minimiert dieses Risiko systematisch.</p>
+        <div class="info-block">
+          <p>HI-Export ist dem <strong>BAFA (Bundesamt für Wirtschaft und Ausfuhrkontrolle)</strong> bekannt und wird seit mehr als 30 Jahren erfolgreich bei Konzernen eingesetzt. Die Software arbeitet als <strong>Client-Server-Lösung</strong> ausschließlich in Ihrem gesicherten Firmennetzwerk.</p>
+        </div>
+        <br>
+        <a href="https://hi-export.de" class="btn-primary" style="width: fit-content;">
+          HI-Export anfragen
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="14" height="14"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
+
+      <div class="export-modules">
+        <div class="module-item">
+          <div class="module-icon">📋</div>
+          <div>
+            <h4>Ausfuhrverwaltung</h4>
+            <p>Einzel- (EAG), allgemeine (AGG) und Sammelausfuhrgenehmigungen (SAG) — inkl. Beantragung und Meldung.</p>
+          </div>
+        </div>
+        <div class="module-item">
+          <div class="module-icon">🛡️</div>
+          <div>
+            <h4>Sanktionslisten-Screening</h4>
+            <p>Regelmäßige Prüfung aller Geschäftsadressen gegen EU-Terrorliste und eigene Blacklists.</p>
+          </div>
+        </div>
+        <div class="module-item">
+          <div class="module-icon">🔗</div>
+          <div>
+            <h4>ELAN-K2-Schnittstelle</h4>
+            <p>Halbjahresmeldungen im ELAN-K2-Format — direkt aus der Software exportierbar.</p>
+          </div>
+        </div>
+        <div class="module-item">
+          <div class="module-icon">⚡</div>
+          <div>
+            <h4>Frühwarnanalyse</h4>
+            <p>Automatische Überwachung von Genehmigungsfristen und Auflagen mit Frühwarnsystem.</p>
+          </div>
+        </div>
+        <div class="module-item">
+          <div class="module-icon">🔄</div>
+          <div>
+            <h4>ERP-Schnittstelle</h4>
+            <p>Offene Schnittstelle zu ERP- und Zollsystemen für automatisierten Datenaustausch.</p>
+          </div>
         </div>
       </div>
-      <p class="card-desc">Individuelle Softwarelösungen, die exakt auf Ihre Prozesse zugeschnitten sind — agil entwickelt, nachhaltig betreut.</p>
-      <ul class="features">
-        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Agile Umsetzung Ihrer Anforderungen</li>
-        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Schulung und Betreuung Ihrer Mitarbeiter</li>
-        <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>Supportverträge für reibungslose Nutzung</li>
-      </ul>
-      <a href="#kontakt" class="card-link">
-        Anfrage stellen
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- WARUM -->
+<section id="warum">
+  <div class="section-inner">
+    <div class="section-head">
+      <p class="section-eyebrow">Warum Hoffmann IT</p>
+      <h2 class="section-title">Vertrauen, das über<br>drei Jahrzehnte gewachsen ist</h2>
+    </div>
+    <div class="reasons-grid">
+      <div class="reason-card">
+        <span class="reason-num">01</span>
+        <h3>Drei Jahrzehnte Expertise</h3>
+        <p>Seit mehr als 30 Jahren entwickeln und betreuen wir Unternehmenssoftware für Konzerne und den Mittelstand. Unsere Kunden kennen uns nicht aus einem Pitch — sondern aus jahrelanger Zusammenarbeit.</p>
+      </div>
+      <div class="reason-card">
+        <span class="reason-num">02</span>
+        <h3>Spezialist für Compliance</h3>
+        <p>HI-Export wurde in direkter Abstimmung mit Exportkontroll-Beauftragten entwickelt und ist dem BAFA bekannt. Rechtskonformität ist kein Versprechen, sondern nachgewiesene Praxis.</p>
+      </div>
+      <div class="reason-card">
+        <span class="reason-num">03</span>
+        <h3>Echter Support, kein Ticket-System</h3>
+        <p>Als inhabergeführtes Unternehmen aus dem Raum München bieten wir persönlichen Ansprechpartner und direkte Supportleistungen — keine anonymen Hotlines.</p>
+      </div>
+      <div class="reason-card">
+        <span class="reason-num">04</span>
+        <h3>Agile Weiterentwicklung</h3>
+        <p>Ihre Anforderungen werden ernst genommen. Sinnvolle Erweiterungen, die mehreren Kunden nutzen, werden oft kostenfrei in die Standardprodukte integriert.</p>
+      </div>
+      <div class="reason-card">
+        <span class="reason-num">05</span>
+        <h3>Datensicherheit by design</h3>
+        <p>Unsere Client-Server-Lösungen laufen ausschließlich in Ihrem Firmennetzwerk — keine Cloud-Pflicht, keine Abhängigkeit von externen Anbietern, volle Kontrolle über Ihre Daten.</p>
+      </div>
+      <div class="reason-card">
+        <span class="reason-num">06</span>
+        <h3>Microsoft-Spezialist</h3>
+        <p>Tiefe Expertise im Microsoft-Ökosystem: .NET, SQL Server, IIS und Oracle. Bewährte Technologien, die sich in Unternehmensinfrastrukturen reibungslos integrieren.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="kontakt" class="cta-section">
+  <div class="cta-inner">
+    <h2>Sprechen Sie mit uns — unverbindlich und kostenlos</h2>
+    <p>Ob Exportkontrolle, Baustellen-Software oder eine individuelle Entwicklung: Wir rufen Sie zurück, wenn es Ihnen passt.</p>
+    <div class="cta-actions">
+      <a href="tel:+498121974694" class="btn-primary">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="14" height="14"><path d="M2 3c0-.6.4-1 1-1h2.5l1 3-1.5 1.5c.9 1.8 2.2 3.1 4 4L10.5 9l3 1V12.5c0 .6-.4 1-1 1C5.4 14 2 7.2 2 3z"/></svg>
+        +49 (0)8121 974694
+      </a>
+      <a href="mailto:info@hoffmann-it.de" class="btn-ghost">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="14" height="14"><rect x="2" y="4" width="12" height="9" rx="1"/><path d="M2 4l6 5 6-5"/></svg>
+        info@hoffmann-it.de
       </a>
     </div>
-
-  </div>
-</section>
-
-<!-- ── ÜBER UNS ── -->
-<section class="about" id="unternehmen">
-  <div class="about-inner">
-    <div class="about-copy">
-      <div class="section-label">Über uns</div>
-      <h2>Mehr als 30 Jahre Erfahrung in Branchensoftware</h2>
-      <p>Seit 1994 entwickeln wir Software, die den Alltag von Unternehmen wirklich erleichtert. Unsere Lösungen werden in mittelständischen Betrieben und Konzernen eingesetzt — mit persönlichem Support direkt vom Entwickler. Kein Ticketsystem, kein Callcenter. Echte Betreuung aus Bayern.</p>
-    </div>
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-number">30+</div>
-        <div class="stat-desc">Jahre Branchenerfahrung</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">3</div>
-        <div class="stat-desc">Spezialisierte Produkte</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">1994</div>
-        <div class="stat-desc">Gründungsjahr</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number">100%</div>
-        <div class="stat-desc">Made in Bayern</div>
-      </div>
+    <div class="contact-info">
+      <a href="https://hoffmann-it.de/kontakt/">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5s4.5-5 4.5-8.5c0-2.5-2-4.5-4.5-4.5z"/><circle cx="8" cy="6" r="1.5"/></svg>
+        Am Heckenacker 10, 85652 Pliening
+      </a>
+      <a href="https://hoffmann-it.de/kontakt/">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8h6M8 5v6"/></svg>
+        Rückrufservice nutzen
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ── KONTAKT ── -->
-<section class="contact-section" id="kontakt">
-  <div class="section-label">Kontakt</div>
-  <h2>Kostenlos und unverbindlich anfragen</h2>
-  <p>Wir rufen Sie zurück, wenn Sie Zeit haben — persönlich, ohne Warteschleife.</p>
-
-  <div class="contact-cards">
-    <div class="contact-card">
-      <div class="contact-card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.37 2 2 0 0 1 3.6 1.19h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.73a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
-      </div>
-      <div class="contact-card-body">
-        <label>Telefon</label>
-        <span>+49 (0)8121 974694</span>
-      </div>
-    </div>
-    <div class="contact-card">
-      <div class="contact-card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-      </div>
-      <div class="contact-card-body">
-        <label>E-Mail</label>
-        <span>info@hoffmann-it.de</span>
-      </div>
-    </div>
-    <div class="contact-card">
-      <div class="contact-card-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      </div>
-      <div class="contact-card-body">
-        <label>Adresse</label>
-        <span>Am Heckenacker 10, 85652 Pliening</span>
-      </div>
-    </div>
-  </div>
-
-  <a href="mailto:info@hoffmann-it.de" class="btn btn-primary" style="background:var(--blue);color:#fff;">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-    E-Mail schreiben
-  </a>
-</section>
-
-<!-- ── FOOTER ── -->
+<!-- FOOTER -->
 <footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <a href="#" class="logo">
-        <div class="logo-mark">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17.5h7M17.5 14v7"/>
-          </svg>
-        </div>
-        <span class="logo-text">Hoffmann<em>IT</em></span>
-      </a>
-      <p>Hoffmann Informationssysteme<br>Am Heckenacker 10<br>85652 Pliening<br><br>Tel.: +49 (0)8121 974694<br>Fax: +49 (0)8121 974693<br>info@hoffmann-it.de</p>
+  <div class="footer-inner">
+    <span>© 2025 Hoffmann Informationssysteme, Pliening</span>
+    <div class="footer-links">
+      <a href="https://hoffmann-it.de/impressum/">Impressum</a>
+      <a href="https://hoffmann-it.de/datenschutz/">Datenschutz</a>
+      <a href="https://hoffmann-it.de/kontakt/">Kontakt</a>
     </div>
-    <div>
-      <h4>Produkte</h4>
-      <ul>
-        <li><a href="https://bauleitung-it.de" target="_blank" rel="noopener">Bauleitung-IT</a></li>
-        <li><a href="https://hi-export.de" target="_blank" rel="noopener">HI-Export</a></li>
-        <li><a href="#produkte">Individualsoftware</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Rechtliches</h4>
-      <ul>
-        <li><a href="#impressum" id="impressum">Impressum</a></li>
-        <li><a href="#datenschutz" id="datenschutz">Datenschutz</a></li>
-        <li><a href="#kontakt">Kontakt</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2024 Hoffmann Informationssysteme GmbH</span>
-    <span>Am Heckenacker 10 · 85652 Pliening · Bayern</span>
   </div>
 </footer>
-
-<script>
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-  hamburger.addEventListener('click', () => {
-    const open = hamburger.classList.toggle('open');
-    mobileMenu.classList.toggle('open');
-    hamburger.setAttribute('aria-expanded', open);
-  });
-  // Close mobile menu on link click
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('open');
-      mobileMenu.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', false);
-    });
-  });
-</script>
 
 </body>
 </html>
